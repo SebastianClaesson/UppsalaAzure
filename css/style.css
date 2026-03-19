@@ -658,6 +658,12 @@ img {
   display: block;
 }
 
+/* === Newsletter CTA === */
+.newsletter-cta {
+  background: linear-gradient(135deg, var(--azure-blue), #005a9e);
+  color: #ffffff;
+}
+
 /* === Responsive === */
 @media (max-width: 900px) {
   .hero h1 {
