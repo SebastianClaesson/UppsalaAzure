@@ -161,9 +161,10 @@ img {
   gap: 0.5rem;
 }
 
-.logo svg {
+.logo img {
   width: 28px;
   height: 28px;
+  object-fit: contain;
 }
 
 .nav-links {
