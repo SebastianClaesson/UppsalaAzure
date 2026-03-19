@@ -96,6 +96,17 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (pct >= 80) fill.classList.add("almost-full");
   });
 
+  // === FAQ accordion ===
+  document.querySelectorAll(".faq-question").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("open");
+      const answer = btn.nextElementSibling;
+      if (answer) {
+        answer.classList.toggle("open");
+      }
+    });
+  });
+
   // === Highlight active nav link ===
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-links a").forEach((link) => {

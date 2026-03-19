@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up – Uppsala Azure User Group</title>
-  <meta name="description" content="Register for upcoming Uppsala Azure User Group events." />
+  <title>Newsletter – Uppsala Azure User Group</title>
+  <meta name="description" content="Subscribe to the Uppsala Azure User Group newsletter to stay updated on upcoming events." />
   <link rel="icon" type="image/png" href="images/Azure.png" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -34,32 +34,37 @@
   <!-- Page Header -->
   <section class="hero" style="padding: 2.5rem 0;">
     <div class="container">
-      <h1>Register for an Event</h1>
-      <p>Fill in the form below and we'll save your spot.</p>
+      <h1>Newsletter</h1>
+      <p>Get notified when we announce new events. No spam — only meetup updates.</p>
     </div>
   </section>
 
-  <!-- Sign-Up Form (Tally.so embed) -->
+  <!-- Newsletter Form -->
   <section class="section">
     <div class="container">
-      <div class="signup-section" style="max-width: 700px;">
+      <div class="signup-section" style="max-width: 600px;">
+        <h3 style="margin-bottom: 0.5rem; text-align: center;">Stay in the loop</h3>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 1.5rem;">Enter your email and we'll let you know when the next UAUG meetup is announced.</p>
+
+        <!--
+          TODO: Replace with your Tally form for newsletter signup.
+          Create a simple Tally form with just an Email field,
+          then replace YOUR_NEWSLETTER_FORM_ID below.
+        -->
         <iframe
-          data-tally-src="https://tally.so/embed/KY0NAX?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          data-tally-src="https://tally.so/embed/YOUR_NEWSLETTER_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
           loading="lazy"
           width="100%"
-          height="732"
+          height="200"
           frameborder="0"
           marginheight="0"
           marginwidth="0"
-          title="Uppsala Azure User Group Sign-Up"
+          title="Newsletter Signup"
         ></iframe>
         <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
 
-        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">
-          By registering, you agree to our <a href="about.html#code-of-conduct">Code of Conduct</a>.
-        </p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">
-          Having trouble with the form? Email us at <a href="mailto:Register@UppsalaAzure.tech">Register@UppsalaAzure.tech</a>.
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">
+          We only send emails about upcoming UAUG events. Unsubscribe at any time by emailing <a href="mailto:Register@UppsalaAzure.tech">Register@UppsalaAzure.tech</a>.
         </p>
       </div>
     </div>
