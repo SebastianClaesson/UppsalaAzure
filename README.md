@@ -1,16 +1,17 @@
-# Uppsala Azure User Group – Website
+# Uppsala Azure User Group (UAUG) – Website
 
 Static website for the Uppsala Azure User Group, hosted on GitHub Pages.
 
 ## Site Structure
 
 ```
-index.html          Homepage – hero, upcoming event, about section
-events.html         Full event listing with filter (All / Upcoming / Past)
-signup.html         Registration form (embedded Tally.so form)
-css/style.css       All styling
-js/main.js          Navigation, agenda toggles, event filters
-images/             Images (hero background, etc.)
+index.html              Homepage – hero, upcoming event, about section
+events.html             Full event listing with filter (All / Upcoming / Past)
+signup.html             Registration form (embedded Tally.so form)
+submit-session.html     Speaker session submission (embedded Tally.so form)
+css/style.css           All styling (including dark mode)
+js/main.js              Navigation, agenda toggles, event filters, registration counter, theme toggle
+images/                 Images (hero background, etc.)
 ```
 
 ## Hosting on GitHub Pages
@@ -27,12 +28,92 @@ To use a custom domain (e.g. `uppsalaazure.tech`):
 2. Add a `CNAME` DNS record pointing to `<username>.github.io`.
 3. GitHub will automatically create a `CNAME` file in the repo.
 
+---
+
+## Things That Need Manual Updates
+
+### 1. Registration Counter
+
+Each upcoming event has a registration counter showing how many spots are taken. **You need to update this manually** when you check the Tally dashboard.
+
+In both `index.html` and `events.html`, find the counter element and change the `data-registered` value:
+
+```html
+<div class="reg-counter" data-registered="0" data-capacity="35">
+```
+
+Change `0` to the current number of registrations. The progress bar, "spots left" text, and color (blue → orange at 80% → red when full) all update automatically.
+
+**Where to find the count:** Log in to [tally.so](https://tally.so) → open the sign-up form → check the submissions count.
+
+### 2. Event Date, Time, Venue, and Agenda
+
+These are hardcoded in the event cards in `index.html` and `events.html`. Update both files when details change. Key things to update:
+
+- Date and time in the `event-meta` div
+- Agenda times and session titles in the `agenda` list
+- Speaker names and titles
+- Venue name and address
+
+### 3. Map Location
+
+The embedded OpenStreetMap uses GPS coordinates. If the venue changes, update the `iframe` src and the "View larger map" link in both `index.html` and `events.html`. Replace the coordinates in the URL:
+
+```
+bbox=LEFT,BOTTOM,RIGHT,TOP  (bounding box around the marker)
+marker=LAT,LON              (the pin location)
+```
+
+Current coordinates for Viedoc, Stationsgatan 23: **59.8562, 17.6525**
+
+Tip: search the new address on [openstreetmap.org](https://www.openstreetmap.org), click "Share" → "HTML", and copy the embed URL.
+
+### 4. Maximum Event Capacity
+
+To change the max capacity (currently 35), update **both** of these in `index.html` and `events.html`:
+
+```html
+<div class="reg-counter" data-registered="0" data-capacity="35">
+```
+```html
+<strong><span class="reg-count">0</span> / 35 registered</strong>
+```
+
+### 5. Tally Forms
+
+Two Tally forms are embedded:
+
+| Page | Form ID | Purpose |
+|---|---|---|
+| `signup.html` | `KY0NAX` | Event registration |
+| `submit-session.html` | `QK0aqG` | Speaker session proposals |
+
+To replace a form, update the `data-tally-src` URL in the iframe on the respective page.
+
+### 6. Contact Email
+
+The fallback email `Register@UppsalaAzure.tech` appears in:
+
+- `signup.html` – below the embedded form
+- `submit-session.html` – below the embedded form
+- `index.html` – footer
+- `events.html` – footer
+
+### 7. Hero Background Image
+
+The hero uses `images/luboshouska-uppsala-434006_1920.jpg`. To change it:
+
+1. Place the new image in the `images/` folder.
+2. Update the path in `css/style.css` — search for `url("../images/` (appears twice: once for light mode, once for dark mode).
+
+---
+
 ## Managing Content
 
 ### Adding a New Upcoming Event
 
 1. Open `events.html`.
-2. Inside the `<div class="event-grid">`, add a new event card **above** existing ones. Use this template:
+2. Inside `<div class="event-grid">`, add a new event card **above** existing ones. Use this template:
 
 ```html
 <div class="event-card" data-status="upcoming">
@@ -41,8 +122,8 @@ To use a custom domain (e.g. `uppsalaazure.tech`):
     <h3>Event Title</h3>
     <div class="event-meta">
       <span>📅 Month Day, Year</span>
-      <span>🕕 18:00 – 20:30</span>
-      <span>📍 Venue Name</span>
+      <span>🕕 17:30 – 20:00</span>
+      <span>📍 Viedoc – Stationsgatan 23, Uppsala</span>
     </div>
   </div>
   <div class="event-card-body">
@@ -50,23 +131,45 @@ To use a custom domain (e.g. `uppsalaazure.tech`):
 
     <h4 style="margin: 1rem 0 0.5rem;">Speakers</h4>
     <ul style="list-style: none; margin-bottom: 1rem;">
-      <li><strong>Speaker Name</strong> – Title / Role · Session Topic</li>
+      <li><strong>Speaker Name</strong> – Title / Role</li>
     </ul>
 
     <button class="agenda-toggle"><span class="arrow">▶</span> View Agenda</button>
     <div class="agenda-content">
       <ul class="agenda">
-        <li><span class="agenda-time">18:00</span> Doors open &amp; networking</li>
-        <li><span class="agenda-time">18:15</span> Welcome</li>
-        <li><span class="agenda-time">18:30</span> Speaker Name – Session Topic</li>
-        <li><span class="agenda-time">19:15</span> Break</li>
-        <li><span class="agenda-time">19:30</span> Speaker Name – Session Topic</li>
-        <li><span class="agenda-time">20:15</span> Q&amp;A &amp; networking</li>
-        <li><span class="agenda-time">20:30</span> Close</li>
+        <li><span class="agenda-time">17:30</span> Opening &amp; pre-mingle with food &amp; beverages</li>
+        <li><span class="agenda-time">18:00</span> Session: Speaker – Topic</li>
+        <li><span class="agenda-time">18:45</span> Session: Speaker – Topic</li>
+        <li><span class="agenda-time">19:30</span> Q&amp;A &amp; networking</li>
+        <li><span class="agenda-time">20:00</span> Closing</li>
       </ul>
     </div>
-    <br />
+
+    <!-- Registration counter -->
+    <div class="reg-counter" data-registered="0" data-capacity="35">
+      <div class="reg-counter-label">
+        <strong><span class="reg-count">0</span> / 35 registered</strong>
+        <span class="reg-spots">35 spots left</span>
+      </div>
+      <div class="reg-counter-bar">
+        <div class="reg-counter-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+
     <a href="signup.html" class="btn btn-primary">Register Now</a>
+
+    <h4 style="margin: 1.5rem 0 0.5rem;">Location</h4>
+    <p style="margin-bottom: 0.75rem;">Viedoc – Stationsgatan 23, 753 40 Uppsala</p>
+    <!-- Update coordinates if venue changes -->
+    <iframe
+      src="https://www.openstreetmap.org/export/embed.html?bbox=17.6475%2C59.8537%2C17.6575%2C59.8587&amp;layer=mapnik&amp;marker=59.8562%2C17.6525"
+      width="100%" height="300" frameborder="0"
+      style="border: 1px solid var(--border); border-radius: var(--radius);"
+      loading="lazy" title="Event location"
+    ></iframe>
+    <p style="font-size: 0.85rem; margin-top: 0.4rem;">
+      <a href="https://www.openstreetmap.org/?mlat=59.8562&amp;mlon=17.6525#map=17/59.8562/17.6525" target="_blank" rel="noopener">View larger map</a>
+    </p>
   </div>
 </div>
 ```
@@ -81,39 +184,15 @@ When an event has taken place:
    - `data-status="upcoming"` → `data-status="past"`
    - `badge-upcoming` → `badge-past`
    - Badge text from `Upcoming` → `Past`
-2. Remove the "Register Now" button from the event card.
+2. Remove the "Register Now" button and the registration counter.
 3. Optionally add a recap paragraph or link to slides/recording in the event card body.
 4. Update the Tally form to remove the old event option (or create a new form per event).
 
-### Updating the Homepage Upcoming Event
-
-The homepage (`index.html`) shows **one** featured upcoming event. When you create a new event:
-
-1. Replace the existing upcoming event card in `index.html` with the new one.
-2. Move the old event to the "Past Events" section, or just keep it in `events.html`.
-
-### Adding Speaker Information
-
-Inside any event card body, add speakers using:
-
-```html
-<h4 style="margin: 1rem 0 0.5rem;">Speakers</h4>
-<ul style="list-style: none; margin-bottom: 1rem;">
-  <li><strong>Name</strong> – Role / Company · Session Topic</li>
-  <li><strong>Name</strong> – Role / Company · Session Topic</li>
-</ul>
-```
+---
 
 ## Registration / Sign-Up (Tally.so)
 
 The sign-up form is hosted on [Tally.so](https://tally.so) and embedded in `signup.html` via an iframe.
-
-### Setting up your Tally form
-
-1. Go to [tally.so](https://tally.so) and create a free account.
-2. Create a new form with the fields you need (e.g. Name, Email, Event, Message).
-3. Publish the form and copy the **form ID** from the URL (e.g. `https://tally.so/r/abc123` → ID is `abc123`).
-4. In `signup.html`, replace `YOUR_FORM_ID` in the iframe `data-tally-src` attribute with your actual form ID.
 
 ### Tally features
 
@@ -122,20 +201,18 @@ The sign-up form is hosted on [Tally.so](https://tally.so) and embedded in `sign
 - Optionally enable email notifications in Tally's form settings.
 - Connect to Google Sheets, Notion, or Slack via Tally integrations.
 
-### Changing the registration email
+---
 
-The fallback contact email (`Register@UppsalaAzure.tech`) appears in:
+## Dark Mode
 
-- `signup.html` – below the embedded form
-- `index.html` – the "Get in touch" link in the about section
-- Footer on all three HTML files
+The site supports dark mode in two ways:
 
-## Hero Background Image
+- **Automatic** – follows the visitor's OS/browser setting via `prefers-color-scheme`
+- **Manual** – sun/moon toggle button in the navigation bar, persisted across pages via `localStorage`
 
-The hero section uses a background image overlaid with the Azure blue gradient. To change it:
+No action needed from you — this works automatically.
 
-1. Place your image in the `images/` folder (e.g. `images/hero-bg.jpg`).
-2. The CSS reference is in `css/style.css` under the `.hero` rule. Update the path if the filename differs.
+---
 
 ## Local Preview
 
@@ -149,9 +226,12 @@ python -m http.server 8000
 npx serve .
 ```
 
+---
+
 ## Checklist for Each New Event
 
-- [ ] Add event card to `events.html`
+- [ ] Add event card to `events.html` (with counter, map, agenda)
 - [ ] Update featured event on `index.html`
-- [ ] Update Tally form with the new event option (or create a new form)
-- [ ] After the event: flip status to "past" in HTML
+- [ ] Update Tally sign-up form with the new event option
+- [ ] Update `data-registered` on both pages as registrations come in
+- [ ] After the event: flip status to "past", remove counter and register button
