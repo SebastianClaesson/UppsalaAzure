@@ -7,9 +7,9 @@ Static website for the Uppsala Azure User Group, hosted on GitHub Pages.
 ```
 index.html          Homepage – hero, upcoming event, about section
 events.html         Full event listing with filter (All / Upcoming / Past)
-signup.html         Registration form (sends email via mailto)
+signup.html         Registration form (embedded Tally.so form)
 css/style.css       All styling
-js/main.js          Navigation, agenda toggles, event filters, signup form
+js/main.js          Navigation, agenda toggles, event filters
 images/             Images (hero background, etc.)
 ```
 
@@ -72,11 +72,6 @@ To use a custom domain (e.g. `uppsalaazure.tech`):
 ```
 
 3. Also update the **homepage** (`index.html`) – replace the current upcoming event card with the new one.
-4. Add the event to the **signup dropdown** in `signup.html`:
-
-```html
-<option value="Event Title – Month Day, Year">Event Title – Month Day, Year</option>
-```
 
 ### Moving an Event to Past
 
@@ -87,8 +82,8 @@ When an event has taken place:
    - `badge-upcoming` → `badge-past`
    - Badge text from `Upcoming` → `Past`
 2. Remove the "Register Now" button from the event card.
-3. Remove the event from the `<select>` dropdown in `signup.html`.
-4. Optionally add a recap paragraph or link to slides/recording in the event card body.
+3. Optionally add a recap paragraph or link to slides/recording in the event card body.
+4. Update the Tally form to remove the old event option (or create a new form per event).
 
 ### Updating the Homepage Upcoming Event
 
@@ -109,18 +104,29 @@ Inside any event card body, add speakers using:
 </ul>
 ```
 
-## Registration / Sign-Up
+## Registration / Sign-Up (Tally.so)
 
-The sign-up form on `signup.html` works via `mailto:`. When a visitor submits the form, their email client opens with a pre-filled message to:
+The sign-up form is hosted on [Tally.so](https://tally.so) and embedded in `signup.html` via an iframe.
 
-```
-Register@UppsalaAzure.tech
-```
+### Setting up your Tally form
 
-No server or backend is needed. To change the registration email, update the address in:
+1. Go to [tally.so](https://tally.so) and create a free account.
+2. Create a new form with the fields you need (e.g. Name, Email, Event, Message).
+3. Publish the form and copy the **form ID** from the URL (e.g. `https://tally.so/r/abc123` → ID is `abc123`).
+4. In `signup.html`, replace `YOUR_FORM_ID` in the iframe `data-tally-src` attribute with your actual form ID.
 
-- `js/main.js` – the `mailto:` link in the form handler
-- `signup.html` – the info text below the form
+### Tally features
+
+- All submissions are stored in the Tally dashboard (no emails needed).
+- Export registrations to CSV at any time.
+- Optionally enable email notifications in Tally's form settings.
+- Connect to Google Sheets, Notion, or Slack via Tally integrations.
+
+### Changing the registration email
+
+The fallback contact email (`Register@UppsalaAzure.tech`) appears in:
+
+- `signup.html` – below the embedded form
 - `index.html` – the "Get in touch" link in the about section
 - Footer on all three HTML files
 
@@ -147,5 +153,5 @@ npx serve .
 
 - [ ] Add event card to `events.html`
 - [ ] Update featured event on `index.html`
-- [ ] Add event option to signup dropdown in `signup.html`
-- [ ] After the event: flip status to "past" and remove from signup dropdown
+- [ ] Update Tally form with the new event option (or create a new form)
+- [ ] After the event: flip status to "past" in HTML
