@@ -57,6 +57,9 @@
   :root:not([data-theme="light"]) .site-footer { background: #0a0a0a; }
   :root:not([data-theme="light"]) .btn-outline-blue { color: #4dabf5; border-color: #4dabf5; }
   :root:not([data-theme="light"]) .btn-outline-blue:hover { background: rgba(77, 171, 245, 0.1); }
+  :root:not([data-theme="light"]) .section-title { color: #ffffff; }
+  :root:not([data-theme="light"]) .about-sidebar h3 { color: #ffffff; }
+  :root:not([data-theme="light"]) iframe[data-tally-src] { filter: invert(0.88) hue-rotate(180deg); }
 }
 
 [data-theme="dark"] .badge-upcoming { background: #1a3a1a; color: #4ade80; }
@@ -64,6 +67,9 @@
 [data-theme="dark"] .site-footer { background: #0a0a0a; }
 [data-theme="dark"] .btn-outline-blue { color: #4dabf5; border-color: #4dabf5; }
 [data-theme="dark"] .btn-outline-blue:hover { background: rgba(77, 171, 245, 0.1); }
+[data-theme="dark"] .section-title { color: #ffffff; }
+[data-theme="dark"] .about-sidebar h3 { color: #ffffff; }
+[data-theme="dark"] iframe[data-tally-src] { filter: invert(0.88) hue-rotate(180deg); }
 
 /* === Theme toggle button === */
 .theme-toggle {
