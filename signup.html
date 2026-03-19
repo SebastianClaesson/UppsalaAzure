@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up – Uppsala Azure User Group</title>
+  <meta name="description" content="Register for upcoming Uppsala Azure User Group events." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="96" height="96" rx="16" fill="#0078d4"/>
+          <path d="M28 68L44 28h8l16 40h-9l-3.5-10H40.5L37 68H28Zm14.5-17h15L52 34h-1L42.5 51Z" fill="#fff"/>
+        </svg>
+        Uppsala Azure User Group
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="hero" style="padding: 2.5rem 0;">
+    <div class="container">
+      <h1>Register for an Event</h1>
+      <p>Fill in the form below and we'll save your spot.</p>
+    </div>
+  </section>
+
+  <!-- Sign-Up Form -->
+  <section class="section">
+    <div class="container">
+      <div class="signup-section">
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="reg-name">Full Name *</label>
+            <input type="text" id="reg-name" name="name" required placeholder="Your name" />
+          </div>
+
+          <div class="form-group">
+            <label for="reg-email">Email *</label>
+            <input type="email" id="reg-email" name="email" required placeholder="you@example.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="reg-event">Event *</label>
+            <select id="reg-event" name="event" required>
+              <option value="">— Select an event —</option>
+              <option value="Kickoff: Uppsala Azure User Group – April 15, 2026">Kickoff: Uppsala Azure User Group – April 15, 2026</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-message">Anything you'd like us to know? (optional)</label>
+            <textarea id="reg-message" name="message" rows="3" placeholder="Dietary preferences, questions, etc."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Registration</button>
+        </form>
+
+        <div id="signup-confirmation" style="display:none; margin-top: 1.5rem; padding: 1rem; background: #dff6dd; border-radius: var(--radius); text-align: center;">
+          <strong>Your email client should open now.</strong><br />
+          Just hit send to complete your registration. If it doesn't open, email us directly at <a href="mailto:Register@UppsalaAzure.tech">Register@UppsalaAzure.tech</a>.
+        </div>
+
+        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">
+          Clicking "Send Registration" will open your email client with a pre-filled message to <strong>Register@UppsalaAzure.tech</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Uppsala Azure User Group · <a href="mailto:Register@UppsalaAzure.tech">Register@UppsalaAzure.tech</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
