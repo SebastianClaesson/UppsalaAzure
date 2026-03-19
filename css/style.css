@@ -60,6 +60,11 @@
   :root:not([data-theme="light"]) .section-title { color: #ffffff; }
   :root:not([data-theme="light"]) .about-sidebar h3 { color: #ffffff; }
   :root:not([data-theme="light"]) iframe[data-tally-src] { filter: invert(0.88) hue-rotate(180deg); }
+  :root:not([data-theme="light"]) .hero { background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url("../images/luboshouska-uppsala-434006_1920.jpg") center / cover no-repeat; }
+  :root:not([data-theme="light"]) .hero h1,
+  :root:not([data-theme="light"]) .hero p { text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); }
+  :root:not([data-theme="light"]) .hero { color: #ffffff; }
+  :root:not([data-theme="light"]) .hero .btn-outline { color: #ffffff; border-color: #ffffff; }
 }
 
 [data-theme="dark"] .badge-upcoming { background: #1a3a1a; color: #4ade80; }
@@ -70,6 +75,11 @@
 [data-theme="dark"] .section-title { color: #ffffff; }
 [data-theme="dark"] .about-sidebar h3 { color: #ffffff; }
 [data-theme="dark"] iframe[data-tally-src] { filter: invert(0.88) hue-rotate(180deg); }
+[data-theme="dark"] .hero { background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url("../images/luboshouska-uppsala-434006_1920.jpg") center / cover no-repeat; }
+[data-theme="dark"] .hero h1,
+[data-theme="dark"] .hero p { text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); }
+[data-theme="dark"] .hero { color: #ffffff; }
+[data-theme="dark"] .hero .btn-outline { color: #ffffff; border-color: #ffffff; }
 
 /* === Theme toggle button === */
 .theme-toggle {
@@ -327,6 +337,49 @@ img {
 
 .event-card-body p {
   margin-bottom: 1rem;
+}
+
+/* === Registration counter === */
+.reg-counter {
+  margin: 1.25rem 0;
+  padding: 1rem;
+  background: var(--bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.reg-counter-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.reg-counter-label strong {
+  font-size: 1.1rem;
+}
+
+.reg-counter-bar {
+  height: 10px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.reg-counter-fill {
+  height: 100%;
+  background: var(--azure-blue);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.reg-counter-fill.almost-full {
+  background: #e8912d;
+}
+
+.reg-counter-fill.full {
+  background: #d32f2f;
 }
 
 /* === Agenda === */

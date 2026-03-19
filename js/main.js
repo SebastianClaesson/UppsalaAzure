@@ -79,6 +79,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // === Registration counters ===
+  document.querySelectorAll(".reg-counter").forEach((counter) => {
+    const registered = parseInt(counter.dataset.registered, 10);
+    const capacity = parseInt(counter.dataset.capacity, 10);
+    const pct = Math.min((registered / capacity) * 100, 100);
+    const spotsLeft = Math.max(capacity - registered, 0);
+
+    counter.querySelector(".reg-count").textContent = registered;
+    counter.querySelector(".reg-spots").textContent =
+      spotsLeft > 0 ? `${spotsLeft} spots left` : "Event is full";
+
+    const fill = counter.querySelector(".reg-counter-fill");
+    fill.style.width = `${pct}%`;
+    if (pct >= 100) fill.classList.add("full");
+    else if (pct >= 80) fill.classList.add("almost-full");
+  });
+
   // === Highlight active nav link ===
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-links a").forEach((link) => {
