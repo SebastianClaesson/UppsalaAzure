@@ -68,6 +68,17 @@
   :root:not([data-theme="light"]) .filter-tab { background: #2a2a2a; border-color: #444; color: #e4e4e4; }
   :root:not([data-theme="light"]) .filter-tab:hover { border-color: #4dabf5; color: #4dabf5; }
   :root:not([data-theme="light"]) .filter-tab.active { background: #4dabf5; color: #ffffff; border-color: #4dabf5; }
+  :root:not([data-theme="light"]) .signup-section { background: #252525; border: 1px solid #333; }
+  :root:not([data-theme="light"]) .signup-section h3 { color: #ffffff; }
+  :root:not([data-theme="light"]) .newsletter-cta { background: linear-gradient(135deg, #1a6bc4, #004080); }
+  :root:not([data-theme="light"]) .newsletter-cta .section-title { color: #ffffff; }
+  :root:not([data-theme="light"]) .faq-question { color: #e4e4e4; }
+  :root:not([data-theme="light"]) .faq-item { border-color: #333; }
+  :root:not([data-theme="light"]) .btn-primary { background: #1a6bc4; color: #ffffff; }
+  :root:not([data-theme="light"]) .btn-primary:hover { background: #1558a8; }
+  :root:not([data-theme="light"]) .reg-counter { background: #1a1a1a; border-color: #333; }
+  :root:not([data-theme="light"]) .event-card-header { background: #1a2d42; }
+  :root:not([data-theme="light"]) .event-card-header h3 { color: #ffffff; }
 }
 
 [data-theme="dark"] .badge-upcoming { background: #1a3a1a; color: #4ade80; }
@@ -86,6 +97,17 @@
 [data-theme="dark"] .filter-tab { background: #2a2a2a; border-color: #444; color: #e4e4e4; }
 [data-theme="dark"] .filter-tab:hover { border-color: #4dabf5; color: #4dabf5; }
 [data-theme="dark"] .filter-tab.active { background: #4dabf5; color: #ffffff; border-color: #4dabf5; }
+[data-theme="dark"] .signup-section { background: #252525; border: 1px solid #333; }
+[data-theme="dark"] .signup-section h3 { color: #ffffff; }
+[data-theme="dark"] .newsletter-cta { background: linear-gradient(135deg, #1a6bc4, #004080); }
+[data-theme="dark"] .newsletter-cta .section-title { color: #ffffff; }
+[data-theme="dark"] .faq-question { color: #e4e4e4; }
+[data-theme="dark"] .faq-item { border-color: #333; }
+[data-theme="dark"] .btn-primary { background: #1a6bc4; color: #ffffff; }
+[data-theme="dark"] .btn-primary:hover { background: #1558a8; }
+[data-theme="dark"] .reg-counter { background: #1a1a1a; border-color: #333; }
+[data-theme="dark"] .event-card-header { background: #1a2d42; }
+[data-theme="dark"] .event-card-header h3 { color: #ffffff; }
 
 /* === Theme toggle button === */
 .theme-toggle {
