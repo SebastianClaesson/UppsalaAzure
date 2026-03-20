@@ -57,16 +57,11 @@ These are hardcoded in the event cards in `index.html` and `events.html`. Update
 
 ### 3. Map Location
 
-The embedded OpenStreetMap uses GPS coordinates. If the venue changes, update the `iframe` src and the "View larger map" link in both `index.html` and `events.html`. Replace the coordinates in the URL:
+The embedded Google Map uses coordinates. If the venue changes, update the `iframe` src and the "View larger map" link in both `index.html` and `events.html`.
 
-```
-bbox=LEFT,BOTTOM,RIGHT,TOP  (bounding box around the marker)
-marker=LAT,LON              (the pin location)
-```
+Easiest method: go to [Google Maps](https://www.google.com/maps), search for the new address, click **Share** → **Embed a map**, and copy the `iframe` src URL.
 
-Current coordinates for Viedoc, Stationsgatan 23: **59.8562, 17.6525**
-
-Tip: search the new address on [openstreetmap.org](https://www.openstreetmap.org), click "Share" → "HTML", and copy the embed URL.
+Current venue: Viedoc, Stationsgatan 23, 753 40 Uppsala
 
 ### 4. Maximum Event Capacity
 
