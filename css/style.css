@@ -492,8 +492,6 @@ img {
 .agenda li {
   padding: 0.5rem 0;
   border-bottom: 1px solid var(--border);
-  display: flex;
-  gap: 1rem;
 }
 
 .agenda li:last-child {
