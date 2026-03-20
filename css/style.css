@@ -60,7 +60,7 @@
   :root:not([data-theme="light"]) .section-title { color: #ffffff; }
   :root:not([data-theme="light"]) .about-sidebar h3 { color: #ffffff; }
   :root:not([data-theme="light"]) iframe[data-tally-src] { filter: invert(0.88) hue-rotate(180deg); }
-  :root:not([data-theme="light"]) .hero { background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url("../images/test.jpg") center / cover no-repeat fixed; }
+  :root:not([data-theme="light"]) .hero { background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url("../images/luboshouska-uppsala-434006_1920.jpg") center / cover no-repeat fixed; }
   :root:not([data-theme="light"]) .hero h1,
   :root:not([data-theme="light"]) .hero p { text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); }
   :root:not([data-theme="light"]) .hero { color: #ffffff; }
@@ -89,7 +89,7 @@
 [data-theme="dark"] .section-title { color: #ffffff; }
 [data-theme="dark"] .about-sidebar h3 { color: #ffffff; }
 [data-theme="dark"] iframe[data-tally-src] { filter: invert(0.88) hue-rotate(180deg); }
-[data-theme="dark"] .hero { background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url("../images/test.jpg") center / cover no-repeat fixed; }
+[data-theme="dark"] .hero { background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url("../images/luboshouska-uppsala-434006_1920.jpg") center / cover no-repeat fixed; }
 [data-theme="dark"] .hero h1,
 [data-theme="dark"] .hero p { text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); }
 [data-theme="dark"] .hero { color: #ffffff; }
@@ -238,7 +238,7 @@ img {
 .hero {
   background:
     linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)),
-    url("../images/test.jpg") center / cover no-repeat fixed;
+    url("../images/luboshouska-uppsala-434006_1920.jpg") center / cover no-repeat fixed;
   color: #ffffff;
   padding: 4rem 0;
   text-align: center;
