@@ -316,11 +316,13 @@ img {
   font-size: 1.75rem;
   margin-bottom: 0.5rem;
   color: var(--azure-dark);
+  text-align: center;
 }
 
 .section-subtitle {
   color: var(--text-light);
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 /* === Event Cards === */
