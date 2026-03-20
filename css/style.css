@@ -378,6 +378,53 @@ img {
   margin-bottom: 1rem;
 }
 
+/* === Countdown timer === */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--azure-blue);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  min-width: 70px;
+}
+
+.countdown-number {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.countdown-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+  opacity: 0.85;
+}
+
+.countdown.event-live .countdown-item {
+  background: #2e7d32;
+}
+
+.countdown.event-passed .countdown-item {
+  background: var(--text-light);
+}
+
+@media (max-width: 480px) {
+  .countdown { gap: 0.5rem; }
+  .countdown-item { min-width: 55px; padding: 0.5rem 0.6rem; }
+  .countdown-number { font-size: 1.2rem; }
+}
+
 /* === Registration counter === */
 .reg-counter {
   margin: 1.25rem 0;

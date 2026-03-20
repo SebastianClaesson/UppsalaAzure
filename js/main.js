@@ -96,6 +96,42 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (pct >= 80) fill.classList.add("almost-full");
   });
 
+  // === Countdown timer ===
+  document.querySelectorAll(".countdown[data-event-date]").forEach((el) => {
+    const target = new Date(el.dataset.eventDate).getTime();
+
+    function update() {
+      const now = Date.now();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        // Check if event is currently happening (assume 2.5h duration)
+        const endTime = target + 2.5 * 60 * 60 * 1000;
+        if (now < endTime) {
+          el.classList.add("event-live");
+          el.innerHTML = '<div class="countdown-item" style="min-width:auto;padding:0.75rem 2rem;"><span class="countdown-number">🔴 LIVE</span><span class="countdown-label">Event is happening now!</span></div>';
+        } else {
+          el.classList.add("event-passed");
+          el.innerHTML = '<div class="countdown-item" style="min-width:auto;padding:0.75rem 2rem;"><span class="countdown-number">✓</span><span class="countdown-label">Event has ended</span></div>';
+        }
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      el.querySelector("#cd-days, .cd-days").textContent = days;
+      el.querySelector("#cd-hours, .cd-hours").textContent = hours;
+      el.querySelector("#cd-mins, .cd-mins").textContent = mins;
+      el.querySelector("#cd-secs, .cd-secs").textContent = secs;
+    }
+
+    update();
+    setInterval(update, 1000);
+  });
+
   // === FAQ accordion ===
   document.querySelectorAll(".faq-question").forEach((btn) => {
     btn.addEventListener("click", () => {
