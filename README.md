@@ -87,7 +87,7 @@ To replace a form, update the `data-tally-src` URL in the iframe on the respecti
 
 ### 6. Contact Email
 
-The fallback email `Register@UppsalaAzure.tech` appears in:
+The fallback email `info@UppsalaAzure.com` appears in:
 
 - `signup.html` – below the embedded form
 - `submit-session.html` – below the embedded form
