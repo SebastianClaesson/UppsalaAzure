@@ -263,6 +263,32 @@ img {
   padding: 0.75rem 2rem;
 }
 
+.btn-hero {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(46, 204, 113, 0.4), 0 0 40px rgba(46, 204, 113, 0.15);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+  background: linear-gradient(135deg, #27ae60, #219a52);
+  box-shadow: 0 6px 28px rgba(46, 204, 113, 0.55), 0 0 60px rgba(46, 204, 113, 0.2);
+  transform: translateY(-2px) scale(1.03);
+  text-decoration: none;
+}
+
+.btn-hero:active {
+  transform: translateY(0) scale(1);
+}
+
 /* === Buttons === */
 .btn {
   display: inline-block;
