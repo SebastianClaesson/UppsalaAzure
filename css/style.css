@@ -269,18 +269,16 @@ img {
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: #fff;
-  background: linear-gradient(135deg, #0078d4, #005a9e);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 50px;
-  box-shadow: 0 4px 12px rgba(0, 120, 212, 0.25);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .btn-hero:hover {
-  background: linear-gradient(135deg, #005a9e, #004080);
-  box-shadow: 0 6px 18px rgba(0, 120, 212, 0.35);
+  background: rgba(255, 255, 255, 0.35);
   transform: translateY(-2px) scale(1.03);
   text-decoration: none;
 }
@@ -307,28 +305,29 @@ img {
 }
 
 .btn-primary {
-  background: var(--azure-blue);
-  color: var(--white);
+  background: rgba(0, 120, 212, 0.15);
+  color: var(--azure-blue);
+  border: 2px solid rgba(0, 120, 212, 0.4);
 }
 
 .btn-primary:hover {
-  background: var(--azure-dark);
+  background: rgba(0, 120, 212, 0.25);
 }
 
 .btn-outline {
-  background: transparent;
-  color: var(--white);
-  border: 2px solid var(--white);
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .btn-outline-blue {
-  background: transparent;
+  background: rgba(0, 120, 212, 0.15);
   color: var(--azure-blue);
-  border: 2px solid var(--azure-blue);
+  border: 2px solid rgba(0, 120, 212, 0.4);
 }
 
 .btn-outline-blue:hover {
