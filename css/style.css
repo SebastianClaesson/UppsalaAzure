@@ -54,7 +54,8 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .badge-upcoming { background: #1a3a1a; color: #4ade80; }
   :root:not([data-theme="light"]) .badge-past { background: #2a2a2a; color: #999; }
-  :root:not([data-theme="light"]) .site-footer { background: #0a0a0a; }
+  :root:not([data-theme="light"]) .site-footer { background: #1e1e1e; color: #ddd; }
+  :root:not([data-theme="light"]) .site-footer a { color: #4dabf5; }
   :root:not([data-theme="light"]) .btn-outline-blue { color: #4dabf5; border-color: #4dabf5; }
   :root:not([data-theme="light"]) .btn-outline-blue:hover { background: rgba(77, 171, 245, 0.1); }
   :root:not([data-theme="light"]) .section-title { color: #ffffff; }
@@ -83,7 +84,8 @@
 
 [data-theme="dark"] .badge-upcoming { background: #1a3a1a; color: #4ade80; }
 [data-theme="dark"] .badge-past { background: #2a2a2a; color: #999; }
-[data-theme="dark"] .site-footer { background: #0a0a0a; }
+[data-theme="dark"] .site-footer { background: #1e1e1e; color: #ddd; }
+[data-theme="dark"] .site-footer a { color: #4dabf5; }
 [data-theme="dark"] .btn-outline-blue { color: #4dabf5; border-color: #4dabf5; }
 [data-theme="dark"] .btn-outline-blue:hover { background: rgba(77, 171, 245, 0.1); }
 [data-theme="dark"] .section-title { color: #ffffff; }
@@ -736,6 +738,10 @@ img {
 
 /* === Responsive === */
 @media (max-width: 900px) {
+  .logo {
+    font-size: 0.95rem;
+  }
+
   .hero h1 {
     font-size: 1.75rem;
   }
