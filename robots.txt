@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sebastianclaesson.github.io/UppsalaAzure/sitemap.xml
+Sitemap: https://uppsalaazure.com/sitemap.xml
