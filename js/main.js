@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (content) {
         content.classList.toggle("open");
       }
+      const arrow = btn.querySelector(".arrow");
+      if (btn.classList.contains("open")) {
+        btn.innerHTML = '<span class="arrow">▶</span> Hide Agenda';
+      } else {
+        btn.innerHTML = '<span class="arrow">▶</span> View Agenda';
+      }
     });
   });
 
