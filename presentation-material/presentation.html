@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Azure Security Posture Needs a Second Opinion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css" />
+  <style>
+    :root {
+      --azure-blue: #0078d4;
+      --azure-light: #50e6ff;
+      --azure-dark: #002050;
+      --surface: #1a1a2e;
+      --text: #e0e0e0;
+      --accent: #ff6b35;
+    }
+    .reveal {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+    .reveal h1, .reveal h2, .reveal h3 {
+      text-transform: none;
+      font-weight: 600;
+    }
+    .reveal h1 {
+      font-size: 2.2em;
+      color: var(--azure-light);
+    }
+    .reveal h2 {
+      font-size: 1.6em;
+      color: var(--azure-light);
+      margin-bottom: 0.6em;
+    }
+    .reveal h3 {
+      font-size: 1.2em;
+      color: var(--azure-blue);
+    }
+    .reveal p, .reveal li {
+      font-size: 0.75em;
+      line-height: 1.6;
+      color: var(--text);
+    }
+    .reveal ul {
+      display: block;
+    }
+    .reveal li {
+      margin-bottom: 0.4em;
+    }
+    .reveal .subtitle {
+      font-size: 0.9em;
+      color: #aaa;
+      margin-top: 0.5em;
+    }
+    .reveal .highlight {
+      color: var(--azure-light);
+      font-weight: 600;
+    }
+    .reveal .accent {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .reveal .quote {
+      font-style: italic;
+      color: #ccc;
+      border-left: 4px solid var(--azure-blue);
+      padding-left: 1em;
+      margin: 1em 0;
+      font-size: 0.85em;
+    }
+    .reveal table {
+      margin: 0.5em auto;
+      font-size: 0.6em;
+      border-collapse: collapse;
+    }
+    .reveal table th {
+      background: var(--azure-blue);
+      color: white;
+      padding: 0.5em 0.8em;
+      text-align: left;
+    }
+    .reveal table td {
+      padding: 0.4em 0.8em;
+      border-bottom: 1px solid #333;
+      color: var(--text);
+    }
+    .reveal table tr:nth-child(even) td {
+      background: rgba(255,255,255,0.03);
+    }
+    .reveal .tool-card {
+      background: rgba(0, 120, 212, 0.1);
+      border: 1px solid rgba(0, 120, 212, 0.3);
+      border-radius: 12px;
+      padding: 1em 1.2em;
+      margin: 0.5em 0;
+      text-align: left;
+    }
+    .reveal .tool-card h3 {
+      margin: 0 0 0.3em 0;
+      font-size: 1em;
+    }
+    .reveal .tool-card p {
+      margin: 0;
+      font-size: 0.65em;
+    }
+    .reveal .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3em;
+      margin: 1em 0;
+      flex-wrap: wrap;
+    }
+    .reveal .flow-box {
+      background: rgba(0, 120, 212, 0.15);
+      border: 1px solid var(--azure-blue);
+      border-radius: 10px;
+      padding: 0.6em 0.8em;
+      font-size: 0.6em;
+      text-align: center;
+      min-width: 100px;
+    }
+    .reveal .flow-box.accent-box {
+      background: rgba(255, 107, 53, 0.15);
+      border-color: var(--accent);
+    }
+    .reveal .flow-arrow {
+      font-size: 1.2em;
+      color: var(--azure-blue);
+    }
+    .reveal .badge-deny {
+      background: #d32f2f;
+      color: white;
+      padding: 0.1em 0.5em;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+    .reveal .badge-audit {
+      background: #f9a825;
+      color: #1a1a1a;
+      padding: 0.1em 0.5em;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+    .reveal .badge-dine {
+      background: #2e7d32;
+      color: white;
+      padding: 0.1em 0.5em;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+    .reveal .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1em;
+      text-align: left;
+    }
+    .reveal .takeaway {
+      background: rgba(0, 120, 212, 0.08);
+      border-left: 4px solid var(--azure-light);
+      padding: 0.5em 1em;
+      margin: 0.4em 0;
+      font-size: 0.65em;
+      border-radius: 0 8px 8px 0;
+    }
+    .reveal .section-label {
+      font-size: 0.5em;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--azure-blue);
+      margin-bottom: 0.3em;
+    }
+    .reveal pre {
+      font-size: 0.5em;
+      width: 100%;
+    }
+    .reveal code {
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    }
+    .reveal .slide-number {
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1: Title -->
+      <section>
+        <h1>Your Azure Security Posture Needs a Second Opinion</h1>
+        <p class="subtitle">Sebastian Claesson &mdash; TechLead @ Viedoc</p>
+        <p class="subtitle">Uppsala Azure User Group &middot; May 7, 2026</p>
+      </section>
+
+      <!-- SLIDE 2: The Problem -->
+      <section>
+        <h2>The Problem</h2>
+        <ul>
+          <li>Your Azure environment generates signals <span class="highlight">everywhere</span></li>
+          <li>No single tool sees the complete picture</li>
+          <li>Security reviews are manual, fragmented, and slow</li>
+          <li>Built-in Azure Policies cover common scenarios &mdash; but <span class="accent">your organization has unique requirements</span></li>
+          <li>The gaps between tools are where the risks hide</li>
+        </ul>
+        <div class="quote">
+          "Your Azure environment is talking &mdash; but who's listening?"
+        </div>
+      </section>
+
+      <!-- SLIDE 3: Layered Approach -->
+      <section>
+        <h2>A Layered Security Review</h2>
+        <table>
+          <thead>
+            <tr><th>Layer</th><th>Tool</th><th>What It Sees</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Identity &amp; Access</td><td><span class="highlight">Maester</span></td><td>Entra ID config, Conditional Access, tenant security</td></tr>
+            <tr><td>Resource Config</td><td><span class="highlight">Az Quick Review</span></td><td>Are deployed resources following best practices?</td></tr>
+            <tr><td>Architecture</td><td><span class="highlight">Review Checklists</span></td><td>Does the design match Well-Architected guidance?</td></tr>
+            <tr><td>Enforcement</td><td><span class="highlight">Azure Policies</span></td><td>Prevent drift and enforce compliance continuously</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 1em; font-style: italic; color: #aaa;">Each tool sees a piece. None sees the whole picture.</p>
+      </section>
+
+      <!-- SLIDE 4: Maester -->
+      <section>
+        <p class="section-label">Tool #1</p>
+        <h2>Maester</h2>
+        <div class="tool-card">
+          <h3>Open-source PowerShell framework for Entra ID security testing</h3>
+          <p>Built on Pester &middot; Tests via Microsoft Graph API &middot; CI/CD ready</p>
+        </div>
+        <ul>
+          <li>40+ pre-built tests from Entra ID Security Config Analyzer (EIDSCA)</li>
+          <li>Conditional Access <strong>"What-If"</strong> simulation</li>
+          <li>Aligned to <strong>MITRE ATT&amp;CK</strong> for Entra ID</li>
+          <li>Interactive HTML reports with pass/fail and remediation links</li>
+          <li>GitHub Actions &amp; Azure DevOps integration</li>
+        </ul>
+      </section>
+
+      <!-- SLIDE 5: azqr -->
+      <section>
+        <p class="section-label">Tool #2</p>
+        <h2>Az Quick Review (azqr)</h2>
+        <div class="tool-card">
+          <h3>CLI tool scanning Azure resources against Microsoft best practices</h3>
+          <p>70+ resource types &middot; Resource Graph + Azure Go SDK &middot; Excel/CSV/JSON output</p>
+        </div>
+        <ul>
+          <li>Aligned to Azure <strong>Proactive Resiliency Library v2</strong></li>
+          <li>Covers reliability, operational excellence, cost optimization</li>
+          <li>Optionally pulls <strong>Advisor</strong>, <strong>Defender for Cloud</strong>, and <strong>Policy compliance</strong> data</li>
+          <li>Multi-sheet Excel workbooks with per-resource recommendations</li>
+        </ul>
+      </section>
+
+      <!-- SLIDE 6: Review Checklists -->
+      <section>
+        <p class="section-label">Tool #3</p>
+        <h2>Azure Review Checklists</h2>
+        <div class="tool-card">
+          <h3>Version-controlled checklists for validating Azure designs</h3>
+          <p>Landing Zone &middot; Well-Architected &middot; AKS &middot; AVD &middot; Cost Optimization &middot; and more</p>
+        </div>
+        <ul>
+          <li>Mix of <strong>manual review items</strong> and <strong>Azure Resource Graph queries</strong></li>
+          <li>The "architectural design review" layer</li>
+          <li>Catches <strong>design-level gaps</strong> that resource scanners miss</li>
+        </ul>
+      </section>
+
+      <!-- SLIDE 7: The Gap -->
+      <section>
+        <h2>The Gap</h2>
+        <p>What none of these tools do:</p>
+        <ul>
+          <li>They <span class="highlight">detect</span> issues &mdash; but they don't <span class="accent">prevent</span> them</li>
+          <li>Azure Policies are the enforcement layer</li>
+          <li>But built-in policies <strong>don't cover everything</strong></li>
+          <li>Your organization has requirements Microsoft hasn't built policies for</li>
+        </ul>
+        <div class="quote" style="margin-top: 1.5em;">
+          This is where AI comes in.
+        </div>
+      </section>
+
+      <!-- SLIDE 8: AI Cross-Referencing -->
+      <section>
+        <h2>The Second Opinion</h2>
+        <p>Collect outputs from all three tools and feed them to AI:</p>
+        <div class="flow-diagram">
+          <div class="flow-box">Maester<br/><small>Identity</small></div>
+          <div class="flow-box">azqr<br/><small>Resources</small></div>
+          <div class="flow-box">Checklists<br/><small>Architecture</small></div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-box accent-box">AI<br/><small>Cross-reference</small></div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-box">Roadmap<br/><small>+ Gap list</small></div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-box">Custom<br/>Policies<br/><small>EPAC</small></div>
+        </div>
+        <ul>
+          <li>Find blind spots each tool misses individually</li>
+          <li>Prioritize and correlate findings across layers</li>
+          <li>Identify where <strong>custom Azure Policies</strong> are needed</li>
+          <li>Generate production-ready policy definitions</li>
+        </ul>
+      </section>
+
+      <!-- SLIDE 9: AI-Generated Policies -->
+      <section>
+        <h2>AI-Generated Azure Policies</h2>
+        <p>Some governance requirements have <span class="accent">no built-in policy</span>.</p>
+        <p>Claude can generate production-ready custom policies by feeding it:</p>
+        <ul>
+          <li>Azure resource provider documentation</li>
+          <li>ARM/Bicep schema references</li>
+          <li>The specific issue you want to prevent</li>
+        </ul>
+        <p style="margin-top: 1em;">The result: custom policy definitions ready for <span class="highlight">Enterprise Policy as Code (EPAC)</span></p>
+        <div class="quote" style="margin-top: 1em;">
+          Live demo &mdash; from a real security gap to a deployed policy
+        </div>
+      </section>
+
+      <!-- SLIDE 10: MySQL Problem -->
+      <section>
+        <h2>Real-World Example</h2>
+        <h3>MySQL Flexible Server Guardrails</h3>
+        <p style="margin-bottom: 0.8em;"><strong>The problem:</strong> Built-in policies cover the basics, but miss critical configurations.</p>
+        <div class="two-col">
+          <div>
+            <p><strong style="color: var(--azure-light);">What built-in covers:</strong></p>
+            <ul>
+              <li>Advanced Threat Protection</li>
+              <li>Infrastructure encryption</li>
+            </ul>
+          </div>
+          <div>
+            <p><strong style="color: var(--accent);">What was missing:</strong></p>
+            <ul>
+              <li>Minimum version enforcement</li>
+              <li>SSL/TLS enforcement</li>
+              <li>Slow query logging</li>
+              <li>PII-safe log output</li>
+              <li>Customer-managed keys</li>
+              <li>Geo-redundant backup</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11: The Result -->
+      <section>
+        <h2>The Result &mdash; 12-Policy Initiative</h2>
+        <p>From <span class="highlight">2 built-in</span> to <span class="accent">12 comprehensive</span> policies:</p>
+        <table>
+          <thead>
+            <tr><th>Domain</th><th>Policy</th><th>Effect</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Network</td><td>Deny public network access</td><td><span class="badge-deny">Deny</span></td></tr>
+            <tr><td>Auth</td><td>Entra-only authentication</td><td><span class="badge-audit">Audit</span></td></tr>
+            <tr><td>Encryption</td><td>SSL/TLS enforcement</td><td><span class="badge-deny">Deny</span></td></tr>
+            <tr><td>Encryption</td><td>Customer-managed keys</td><td><span class="badge-audit">Audit</span></td></tr>
+            <tr><td>Threat</td><td>Advanced Threat Protection</td><td><span class="badge-dine">DINE</span></td></tr>
+            <tr><td>Threat</td><td>Defender for MySQL</td><td><span class="badge-audit">Audit</span></td></tr>
+            <tr><td>Backup</td><td>Geo-redundant backup</td><td><span class="badge-audit">Audit</span></td></tr>
+            <tr><td>Resilience</td><td>Zone redundancy</td><td><span class="badge-audit">Audit</span></td></tr>
+            <tr><td>Version</td><td>Minimum version (8.0)</td><td><span class="badge-audit">Audit</span></td></tr>
+            <tr><td>Logging</td><td>Slow query logging</td><td><span class="badge-audit">Audit</span></td></tr>
+            <tr><td>Logging</td><td>Log output to TABLE</td><td><span class="badge-audit">Audit</span></td></tr>
+            <tr><td>Logging</td><td>Block FILE-based output</td><td><span class="badge-deny">Deny</span></td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 0.5em; font-style: italic; color: #aaa; font-size: 0.65em;">7 custom policies generated in hours, not weeks.</p>
+      </section>
+
+      <!-- SLIDE 13: Environment-Specific -->
+      <section>
+        <h2>Environment-Specific Enforcement</h2>
+        <p>Not all environments are equal:</p>
+        <table>
+          <thead>
+            <tr><th>Policy</th><th>Workforce</th><th>Production</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Slow query logging</td><td><span class="badge-audit">Audit</span></td><td><span class="badge-deny">Deny</span></td></tr>
+            <tr><td>Log output to TABLE</td><td><span class="badge-audit">Audit</span></td><td><span class="badge-deny">Deny</span></td></tr>
+            <tr><td>Minimum version</td><td><span class="badge-audit">Audit</span></td><td><span class="badge-deny">Deny</span></td></tr>
+            <tr><td>SSL enforcement</td><td><span class="badge-deny">Deny</span></td><td><span class="badge-deny">Deny</span></td></tr>
+            <tr><td>FILE-based logging</td><td><span class="badge-deny">Deny</span></td><td><span class="badge-deny">Deny</span></td></tr>
+          </tbody>
+        </table>
+        <div class="quote" style="margin-top: 1em;">
+          Start soft in lower environments, enforce hard in production.
+        </div>
+      </section>
+
+      <!-- SLIDE 14: The Workflow -->
+      <section>
+        <h2>From Signal to Policy</h2>
+        <div class="flow-diagram" style="margin: 1.5em 0;">
+          <div class="flow-box">
+            <strong>Detect</strong><br/>
+            <small>Maester &middot; azqr<br/>Review Checklists</small>
+          </div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-box accent-box">
+            <strong>Analyze</strong><br/>
+            <small>AI cross-reference<br/>findings</small>
+          </div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-box">
+            <strong>Prioritize</strong><br/>
+            <small>Roadmap +<br/>gap list</small>
+          </div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-box" style="border-color: var(--azure-light);">
+            <strong>Enforce</strong><br/>
+            <small>Custom policies<br/>via EPAC</small>
+          </div>
+        </div>
+        <ul>
+          <li><span class="highlight">Detect</span> &mdash; run the tools, collect the signals</li>
+          <li><span class="accent">Analyze</span> &mdash; AI finds the connections and blind spots</li>
+          <li><strong>Prioritize</strong> &mdash; risk-ranked remediation roadmap</li>
+          <li><span class="highlight">Enforce</span> &mdash; custom Azure Policies to prevent recurrence</li>
+        </ul>
+      </section>
+
+      <!-- SLIDE 15: Key Takeaways -->
+      <section>
+        <h2>Key Takeaways</h2>
+        <div class="takeaway">
+          <strong>1.</strong> No single tool gives you the full picture &mdash; <span class="highlight">layer your security review</span>
+        </div>
+        <div class="takeaway">
+          <strong>2.</strong> AI is the cross-reference engine &mdash; it connects dots across tool outputs
+        </div>
+        <div class="takeaway">
+          <strong>3.</strong> Custom Azure Policies fill the gaps &mdash; <span class="highlight">AI can generate them</span> from docs and real issues
+        </div>
+        <div class="takeaway">
+          <strong>4.</strong> Iterate and validate &mdash; AI gets you 90% there, <span class="accent">always verify aliases and schemas</span>
+        </div>
+        <div class="takeaway">
+          <strong>5.</strong> Enforce progressively &mdash; audit first, deny in production
+        </div>
+      </section>
+
+      <!-- SLIDE 16: Resources -->
+      <section>
+        <h2>Resources &amp; Links</h2>
+        <table>
+          <tbody>
+            <tr><td><span class="highlight">Maester</span></td><td>maester.dev</td></tr>
+            <tr><td><span class="highlight">Az Quick Review</span></td><td>github.com/Azure/azqr</td></tr>
+            <tr><td><span class="highlight">Review Checklists</span></td><td>github.com/Azure/review-checklists</td></tr>
+            <tr><td><span class="highlight">EPAC</span></td><td>github.com/Azure/enterprise-azure-policy-as-code</td></tr>
+            <tr><td><span class="highlight">Uppsala Azure UG</span></td><td>uppsalaazure.com</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SLIDE 17: Q&A -->
+      <section>
+        <h1 style="margin-bottom: 0.5em;">Q&amp;A</h1>
+        <div class="quote" style="font-size: 1em;">
+          Your Azure environment is talking &mdash; are you listening?
+        </div>
+        <p class="subtitle" style="margin-top: 2em;">Sebastian Claesson &middot; @SebastianClaesson</p>
+        <p class="subtitle">info@UppsalaAzure.com</p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight],
+      width: 1280,
+      height: 720
+    });
+  </script>
+</body>
+</html>
