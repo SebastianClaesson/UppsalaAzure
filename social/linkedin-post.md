@@ -12,6 +12,7 @@ Our ambition is simple: find like-minded people who enjoy working within the Mic
 
 Food, beverages, and good conversations included. The venue is at Viedoc, Stationsgatan 23 in Uppsala.
 
+Check out the event and sign up at **uppsalaazure.com**.
 
 This is just the beginning. Our hope is to build a community that keeps growing and meeting regularly. If you have an Azure topic you're passionate about, submit a session for an upcoming event on our website.
 
