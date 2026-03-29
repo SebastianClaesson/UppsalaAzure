@@ -1,3 +1,6 @@
+// === Registration count (update this number when new signups come in) ===
+const REGISTERED = 9;
+
 // === Theme toggle ===
 (function () {
   const saved = localStorage.getItem("theme");
@@ -87,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === Registration counters ===
   document.querySelectorAll(".reg-counter").forEach((counter) => {
-    const registered = parseInt(counter.dataset.registered, 10);
+    const registered = REGISTERED;
     const capacity = parseInt(counter.dataset.capacity, 10);
     const pct = Math.min((registered / capacity) * 100, 100);
     const spotsLeft = Math.max(capacity - registered, 0);
