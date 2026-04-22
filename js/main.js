@@ -1,5 +1,5 @@
 // === Registration count (update this number when new signups come in) ===
-const REGISTERED = 14;
+const REGISTERED = 15;
 
 // === Theme toggle ===
 (function () {
